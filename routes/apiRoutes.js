@@ -17,23 +17,13 @@ module.exports = function(app) {
       note.id = uuidv4(); 
       noteList.push(note)
       res.json(true);
-    fs.writeFile(noteList, (err, data)).push(note)
+   // fs.writeFile(noteList, (err, data)).push(note)
     });
 
-
-  app.delete("/api/clear", function(req, res) {
-    noteList = [];
-
-    //  HOW DO I FINISH THIS FUNCTION... OR DO I USE THE FOR EACH COMMENTED BELOW
-    let deletedNote = noteList.filter(note.id){
-     return note.id 
-    }
-
-    // noteList.forEach(note => {
-    //   if (note.id === deleteNote) {
-        
-    //   }
-    // });
+    app.delete("/api/notes/:deletedNoteID", function(req, res) {
+      var selectedID = req.params.deletedNoteID;
+      noteList = noteList.filter(note => note.id !== selectedID)
+    
     fs.writeFile("./db.json", noteList, function (err) {
         if (err) console.log(error)
     })
