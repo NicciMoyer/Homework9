@@ -12,9 +12,8 @@ module.exports = function (app) {
     let note = req.body;
     note.id = uuidv4();
     noteList.push(note)
-    res.json(true);
 
-    fs.writeFile("./db.json", JSON.stringify(noteList), function (err) {
+    fs.writeFile("../db.json", JSON.stringify(noteList), function (err) {
       if (err) console.log(error)
       res.json({ ok: true });
     })
@@ -24,7 +23,7 @@ module.exports = function (app) {
     var selectedID = req.params.deletedNoteID;
     noteList = noteList.filter(note => note.id !== selectedID)
 
-    fs.writeFile("./db.json", JSON.stringify(noteList), function (err) {
+    fs.writeFile("../db.json", JSON.stringify(noteList), function (err) {
       if (err) console.log(error)
       res.json({ ok: true });
     })
